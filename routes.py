@@ -1,7 +1,7 @@
 #Thank god, we be in python
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 from models import db, User
-from forms import SignUpForm
+from forms import SignUpForm, LoginForm
 
 #Got to get that app.
 app = Flask(__name__)
@@ -32,10 +32,24 @@ def signup():
             newuser = User(form.first_name.data,form.last_name.data, form.email.data, form.password.data)
             db.session.add(newuser)
             db.session.commit()
-            return "You've been Successfully Signed up!"
+            #Adding for sessions. This tells you that the email portion of the post data is being used.
+            session['email'] = newuser.email #Using for models.py, has constructor. This is a parameter of the objectself.
+            #This is where the user is added to the session.
+            db.session.add(newuser)
+            db.session.commit()
+
+            #return "You've been Successfully Signed up!"
+            return redirect(url_for('home'))
 
     elif request.method =="GET":
         return render_template('signup.html', form=form)
+#Homepage
+@app.route("/home")
+def home():
+    return render_template("home.html")
+@app.route("/login")
+def home():
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True
