@@ -123,3 +123,5 @@ class PicScoreForm(Form):
     score097 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),MinValueValidator(1), MaxValueValidator(5)])
     score098 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),MinValueValidator(1), MaxValueValidator(5)])
     score099 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),MinValueValidator(1), MaxValueValidator(5)])
+
+    submit = SubmitField("Submit Scores")

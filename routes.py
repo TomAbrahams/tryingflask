@@ -50,7 +50,7 @@ def picscore():
         if form.validate() == False:
             return render_template('picscore.html',form=form)
         else:
-            newScoreEmail = session['email']
+            newScoreEmail = "utkeitarol@gmail.com"
 
             score000 = Score(newScoreEmail, "image000.png", form.score000.data)
             score001 = Score(newScoreEmail, "image001.png", form.score001.data)
