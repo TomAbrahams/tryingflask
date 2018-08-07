@@ -24,14 +24,15 @@ class User(db.Model):
     #Check Password methods
     def check_password(self, password):
         return check_password_hash(self.pwdhash, password)
-class Score(db.model):
+
+class Score(db.Model):
     __tablename__ = 'scores'
     uid = db.Column(db.Integer, primary_key = True)
     email = db.Column(db.String(120))
-    imageName = db.Column(db.String(200))
+    imagename = db.Column(db.String(200))
     score = db.Column(db.Integer)
     #Constructor
     def __init__(self, email, imageName, score):
-        self.email = email.title()
-        self.imageName = image.title()
+        self.email = email.lower()
+        self.imagename = image.title()
         self.score = score.title()

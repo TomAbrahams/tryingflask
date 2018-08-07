@@ -1,0 +1,30 @@
+<form method = "POST" action="/signup">
+{{ form.hidden_tag() }}
+{ % set i = 0  % }
+{ % set j = '0' % }
+{ % for i in range(10) % }
+  <div class = "form-group">
+    { % if (i < 10) % }
+      <p class = "nice">
+        <div class="section-device"><img src="../static/img/wfacef/face00{{j}}.html"></div>
+        <br>
+        {{i}}
+        <br>
+        {{j}}
+        {{ form.scoreArray[i] }}
+        <br>
+        <br>
+      </p>
+    { % elif (i < 100) % }
+      <p>
+        <div class="section-device"><img src="../static/img/wfacef/face0{{i}}.html"></div>
+        {{ form.scoreArray[i] }}
+      </p>
+    { % endif % }
+
+
+
+  </div>
+{ % endfor %}
+{{ form.submit(class="btn-primary") }}
+</form>

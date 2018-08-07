@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{ % set i = 1  % }
+{ % set j = '0' % }
+{% block content %}
+<main class = "container signup-section">
+  <div class = "section-content">
+    <h2> Decide the scores</h2>
+
+    <form method = "POST" action="/signup">
+      {{ form.hidden_tag() }}
+
+      {% for i in numbers %}
+        <div class = "form-group">
+          <p>{{i}}</p>
+          { % if (i < 10) % }
+            <p class = "nice">
+              <div class="section-device"><img src="../static/img/wfacef/img00{{j}}.png"></div>
+              <br>
+              <br>
+              {{ i }}
+              <br>
+              {{ j }}
+              <br>
+            </p>
+          { % elif (i < 100) % }
+            <p>
+              <div class="section-device"><img src="../static/img/wfacef/img0{{i|int}}.png"></div>
+              {{ form.scoreArray[i] }}
+            </p>
+          { % endif % }
+        </div>
+      {% endfor %}
+      {{ form.submit(class="btn-primary") }}
+    </form>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<main class = "container signup-section">
+  <div class = "section-content">
+    <h2> Score these picture on a scale from 1 to 5 </h2>
+
+    <form method = "POST" action="/picscore">
+      {{ form.hidden_tag() }}
+
+      <div class = "form-group">
+        <script type = "text/javascript">
+          var count;
+          var text;
+          for(count = 0; count < 10; count++) {
+            currentImage = "img00" + count + ".html";
+            document.write(currentImage);
+            document.write("<br>");
+            document.write( '<div class="section-device">img src="../static/img/face00'+currentImage+'"></div>');
+            document.write("<br>");
+            document.write("<form>");
+            document.write('  <input type="radio" name="score" value=1 ')
+            document.write('  <input type="radio" name="score" value=2 ')
+            document.write('  <input type="radio" name="score" value=3 ')
+            document.write('  <input type="radio" name="score" value=4 ')
+            document.write('  <input type="radio" name="score" value=5 ')
+            document.write("</form>")
+          }
+          for(count = 10; count<100; count++) {
+            currentImage = "img0" + count + ".html";
+            document.write(currentImage);
+            document.write("<br>");
+            document.write('<div class="section-device">img src="../static/img/face0'+currentImage+'"></div>');
+            document.write("<br>");
+            document.write("<form>");
+            document.write('  <input type="radio" name="score" value=1 ')
+            document.write('  <input type="radio" name="score" value=2 ')
+            document.write('  <input type="radio" name="score" value=3 ')
+            document.write('  <input type="radio" name="score" value=4 ')
+            document.write('  <input type="radio" name="score" value=5 ')
+            document.write("</form>")
+          }
+        </script>
+      </div>
+
+
+      {{ form.submit(class="btn-primary") }}
+    </form>
+  </div>
+</main>
+{% endblock %}
