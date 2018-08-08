@@ -1,4 +1,4 @@
-<form method = "POST" action="/signup">
+<form method = "POST" action="/testing">
 {{ form.hidden_tag() }}
 { % set i = 0  % }
 { % set j = '0' % }
@@ -26,5 +26,5 @@
 
   </div>
 { % endfor %}
-{{ form.submit(class="btn-primary") }}
+  {{ form.submit(class="btn-primary") }}
 </form>

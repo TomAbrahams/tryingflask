@@ -15,8 +15,5 @@ class LoginForm(Form):
     submit = SubmitField("Sign in")
 class PicScoreForm(Form):
     #score = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),MinValueValidator(1), MaxValueValidator(5)])
-    scoreArray = []
-    for i in range(10):
-        tempScore = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
-        scoreArray.append(tempScore)
-    submit = SubmitField("Submit Scores")
+    score = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    submission = SubmitField("Submit Scores")

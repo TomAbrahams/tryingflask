@@ -1,6 +1,6 @@
 #Thank god, we be in python
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
-from models import db, User
+from models import db, User, Score
 from forms import SignUpForm, LoginForm, PicScoreForm
 
 #Got to get that app.
@@ -21,6 +21,41 @@ def index():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+#Running into trouble.
+@app.route("/picscore",methods=['GET','POST'])
+def picscore():
+    form = PicScoreForm()
+    finalScores = []
+    otherScores = []
+    for j in range(10):
+        otherScores.append(form.score)
+    i = 0
+    myNumbers = "Start:"
+    if request.method =="POST":
+        if form.validate() == False:
+            return render_template('picscore.html',form=form,i=0,j='0',numbers=myNumbers,scores = otherScores)
+        else:
+            newScoreEmail = "utkeitarol@gmail.com"
+            i = 0
+            for i in range(10):
+                if(i < 10):
+                    #newScoreEmail = otherScores[i]
+                    currentImageName = "image00"+ str(i)+".png"
+                    currentScore = Score(newScoreEmail, currentImageName, otherScores[i].data)
+                    db.session.add(currentScore)
+                #elif(i<100):
+                #    finalScore.append(Score(newScoreEmail, "image0"+i+".png", form.scoreArray[i].data))
+            for z in range(10):
+                    myNumbers += str(otherScores[i].data) + " "
+
+            return myNumbers
+    elif request.method =="GET":
+        return render_template('picscore.html', form=form, i=0,j='0',numbers=myNumbers,scores = otherScores)
+#Homepage
+@app.route("/home")
+def home():
+    return render_template("home.html")
 #Setup the route for SignUp
 @app.route("/signup", methods=['GET','POST'])
 def signup():
@@ -43,31 +78,7 @@ def signup():
 
     elif request.method =="GET":
         return render_template('signup.html', form=form)
-@app.route("/picscore",methods=['GET','POST'])
-def picscore():
-    form = PicScoreForm()
-
-    finalScores = []
-    i = 0
-    myNumbers = [0,1,2,3,4,5,6,7,8,9]
-    if request.method =="POST":
-        if form.validate() == False:
-            return render_template('picscore.html',form=form,i=i,j='0',numbers=myNumbers)
-        else:
-            newScoreEmail = "utkeitarol@gmail.com"
-            i = 0
-            for i in range(10):
-                if(i < 10):
-                    finalScore.append(Score(newScoreEmail, "image00"+ i+".png", form.scoreArray[i].data))
-                #elif(i<100):
-                #    finalScore.append(Score(newScoreEmail, "image0"+i+".png", form.scoreArray[i].data))
-            return jsonify(finalScore)
-    elif request.method =="GET":
-        return render_template('picscore.html', form=form, i=1,j='0',numbers=myNumbers)
-#Homepage
-@app.route("/home")
-def home():
-    return render_template("home.html")
+#This is the end.
 @app.route("/login")
 def login():
     return render_template("login.html")
