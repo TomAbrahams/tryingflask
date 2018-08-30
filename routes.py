@@ -28,14 +28,15 @@ def picscore():
     form = PicScoreForm()
     finalScores = []
     otherScores = []
+    #need 10 different instances of the score object.
     for j in range(10):
-        otherScores.append(form.score)
+        idxScore = "score0" + str(j)
+        otherScores.append(form[idxScore])
     i = 0
     myNumbers = "Start:"
     if request.method =="POST":
         if form.validate() == False:
-            return render_template('picscore.html',form=form,i=0,j='0',numbers=myNumbers,scores = otherScores)
-        else:
+
             newScoreEmail = "utkeitarol@gmail.com"
             i = 0
             for i in range(10):
@@ -43,15 +44,39 @@ def picscore():
                     #newScoreEmail = otherScores[i]
                     currentImageName = "image00"+ str(i)+".png"
                     currentScore = Score(newScoreEmail, currentImageName, otherScores[i].data)
-                    db.session.add(currentScore)
+                    #db.session.add(currentScore)
                 #elif(i<100):
                 #    finalScore.append(Score(newScoreEmail, "image0"+i+".png", form.scoreArray[i].data))
             for z in range(10):
-                    myNumbers += str(otherScores[i].data) + " "
-
-            return myNumbers
+                myNumbers += str(otherScores[z].data) + " "
+            #return myNumbers + " Check it"
+            return jsonify(otherScores)
     elif request.method =="GET":
         return render_template('picscore.html', form=form, i=0,j='0',numbers=myNumbers,scores = otherScores)
+#Pic Score 3... Lets see
+@app.route("/picscore3",methods=['GET','POST'])
+def radialScore():
+    #need 10 different instances of the score object.
+    i = 0
+    j = 0
+    myNumbers = "Start:"
+    options = []
+    myOptions = {}
+
+    if request.method =="POST":
+        newScoreEmail = "utkeitarol@gmail.com"
+        i = 0
+        myOptions['email'] = newScoreEmail 
+        for z in range(10):
+            currentScore = "score" + str(z)
+            picture = "img" + str(z)
+            options.append(request.form[currentScore])
+            myOptions[picture] = request.form[currentScore]
+        options.append(newScoreEmail)
+        #return myNumbers + " Check it"
+        return jsonify(myOptions)
+    elif request.method =="GET":
+        return render_template('picscore3.html', i=0,j='0')
 #Homepage
 @app.route("/home")
 def home():

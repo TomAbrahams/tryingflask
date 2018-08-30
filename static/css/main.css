@@ -1,6 +1,7 @@
 
 .nice {
   font-family: 'Montserrat', sans-serif;
+  padding: 150px;
 }
 .title-container {
     padding-top: 50px;
@@ -132,7 +133,7 @@ a {
   text-transform: uppercase;
 }
 #imgclass {
-  height : 100px;
+  height : 200px;
   width : auto;
 }
 
@@ -232,7 +233,7 @@ header {
   color: #3a3a3a;
   font-size: 18px;
   padding: 5px 0;
-  width: 100%;
+  width: 5%;
 }
 
 .form-group input:focus {

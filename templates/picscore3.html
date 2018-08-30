@@ -7,8 +7,8 @@
     {% set j = '0' %}
     <h2> Decide the scores</h2>
 
-    <form method = "POST" action="/picscore">
-      {{ form.hidden_tag() }}
+    <form method = "POST" action="/picscore3">
+      <p class = "nice"><input type="text" name="email"><br></p>
 
       {% for i in range(10) %}
         <div class = "form-group">
@@ -16,9 +16,19 @@
             <p>
               <div class="section-device"><img src="../static/img/wfacef/img00{{i}}.png" id = "imgclass"></div>
               <div class = "section-device">
-                <p class = "nice">This is picture img00{{i}}.png</p>
-                {{ scores[i] }}
+
+
+
+
               </div>
+              <p>
+                <p class = "nice">This is picture img00{{i}}.png</p>
+                <input type="radio" name="score{{i}}" id="radio{{i}}" value=1 checked>1<br>
+                <input type="radio" name="score{{i}}" id="radio{{i}}" value=2>2<br>
+                <input type="radio" name="score{{i}}" id="radio{{i}}" value=3>3<br>
+                <input type="radio" name="score{{i}}" id="radio{{i}}" value=4>4<br>
+                <input type="radio" name="score{{i}}" id="radio{{i}}" value=5>5<br>
+              </p
               <br>
             </p>
           {% elif (i < 100) %}
@@ -33,9 +43,11 @@
         </div>
       {% endfor %}
       <div class = "section-device">
-      {{ form.submission(class="btn-tertiary") }}
+
       </div>
+      <input type="submit" value="Submit">
     </form>
   </div>
 </main>
+
 {% endblock %}

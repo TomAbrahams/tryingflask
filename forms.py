@@ -16,4 +16,16 @@ class LoginForm(Form):
 class PicScoreForm(Form):
     #score = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),MinValueValidator(1), MaxValueValidator(5)])
     score = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score00 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score01 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score02 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score03 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score04 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score05 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score06 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score07 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score08 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score09 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+    score10 = IntegerField('Score from 1 to 5', validators=[DataRequired("Please enter a number"),NumberRange(min=0,max=5)])
+
     submission = SubmitField("Submit Scores")
