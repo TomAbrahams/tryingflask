@@ -27,7 +27,7 @@ class User(db.Model):
 
 class Score(db.Model):
     __tablename__ = 'scores'
-    uid = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True)
     email = db.Column(db.String(120))
     imagename = db.Column(db.String(200))
     score = db.Column(db.Integer)

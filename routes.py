@@ -66,12 +66,19 @@ def radialScore():
     if request.method =="POST":
         newScoreEmail = "utkeitarol@gmail.com"
         i = 0
-        myOptions['email'] = newScoreEmail 
+        myOptions['email'] = newScoreEmail
         for z in range(10):
             currentScore = "score" + str(z)
             picture = "img" + str(z)
             options.append(request.form[currentScore])
             myOptions[picture] = request.form[currentScore]
+
+            #Adding this for database addition.
+            newScore = Score(str(myOptions['email']), str(picture),int(request.form[currentScore]))
+            db.session.add(newScore)
+            db.session.commit()
+            #this should do it.
+            
         options.append(newScoreEmail)
         #return myNumbers + " Check it"
         return jsonify(myOptions)
