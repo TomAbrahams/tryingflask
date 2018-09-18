@@ -34,5 +34,5 @@ class Score(db.Model):
     #Constructor
     def __init__(self, email, imageName, score):
         self.email = email.lower()
-        self.imagename = imageName.title()
+        self.imagename = imageName.lower()
         self.score = score
