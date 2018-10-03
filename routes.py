@@ -67,7 +67,7 @@ def radialScore():
         newScoreEmail = "utkeitarol@gmail.com"
         i = 0
         #myOptions['email'] = newScoreEmail
-        for z in range(10):
+        for z in range(50):
             currentScore = "score" + str(z)
             picture = "img" + str(z)
             if(z < 10):

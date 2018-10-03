@@ -10,7 +10,7 @@
     <form method = "POST" action="/picscore3">
       <p class = "nice"><input type="text" name="email"><br></p>
 
-      {% for i in range(10) %}
+      {% for i in range(50) %}
         <div class = "form-group">
           {% if (i < 10) %}
             <p>
@@ -22,22 +22,25 @@
 
               </div>
               <p>
-                <p class = "nice">This is picture img00{{i}}.png</p>
+                <p class = "nice"></p>
                 <input type="radio" name="score{{i}}" id="radio{{i}}" value=1 checked>1<br>
                 <input type="radio" name="score{{i}}" id="radio{{i}}" value=2>2<br>
                 <input type="radio" name="score{{i}}" id="radio{{i}}" value=3>3<br>
                 <input type="radio" name="score{{i}}" id="radio{{i}}" value=4>4<br>
                 <input type="radio" name="score{{i}}" id="radio{{i}}" value=5>5<br>
-              </p
+              </p>
               <br>
             </p>
           {% elif (i < 100) %}
             <p>
-              <div class="section-device"><img src="../static/img/wfacef/img0{{i|int}}.png"></div>
-              <div class = "section-device">
-                <p class = "nice">This is picture img00{{i}}.png</p>
-                {{ scores[i] }}
-              </div>
+              <div class="section-device"><img src="../static/img/wfacef/img0{{i|int}}.png" id = "imgclass"></div>
+              <div class = "section-device"></div>
+              <p class = "nice"></p>
+              <input type="radio" name="score{{i}}" id="radio{{i}}" value=1 checked>1<br>
+              <input type="radio" name="score{{i}}" id="radio{{i}}" value=2>2<br>
+              <input type="radio" name="score{{i}}" id="radio{{i}}" value=3>3<br>
+              <input type="radio" name="score{{i}}" id="radio{{i}}" value=4>4<br>
+              <input type="radio" name="score{{i}}" id="radio{{i}}" value=5>5<br>
             </p>
           {% endif %}
         </div>
