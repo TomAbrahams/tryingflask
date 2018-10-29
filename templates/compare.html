@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<main class = "container signup-section">
+  <div class = "section-content">
+    {% set i = 52  %}
+    {% set j = '0' %}
+    <h2> Decide the scores</h2>
+
+    <form method = "POST" action="/picscore3">
+      <p class = "nice">Your Email for your model is {{myEmail}}<br></p>
+
+      {% for i in range(50) %}
+        <div class = "form-group">
+          {% if (i > 10) %}
+            <p>
+              <div class="section-device"><img src="../static/img/wfacef/timg0{{i}}.png" id = "imgclass"></div>
+              <div class = "section-device">
+
+
+
+
+              </div>
+              <p>
+                {% set score = A[i-52] %}
+                <p class = "nice">The estimated score for this is equal to {{A[(i-52)]}}</p>
+                {% if (score == 5) %}
+                  <br>Very Beautiful<br>
+                {% elif (score == 4) %}
+                    <br>Above Average<br>
+                {% elif (score == 3) %}
+                    <br>Average<br>
+                {% elif (score == 4) %}
+                    <br>Below Average<br>
+                {% elif (score == 4) %}
+                    <br>Very Below Average<br>
+                {% endif %}
+              </p>
+              <br>
+            </p>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <div class = "section-device">
+
+      </div>
+      <a href="{{ url_for('index') }}" class="btn-primary">Train Algorithm</a>
+    </form>
+  </div>
+</main>
+
+{% endblock %}

@@ -22,40 +22,10 @@ def index():
 def about():
     return render_template("about.html")
 
-#Running into trouble.
-@app.route("/picscore",methods=['GET','POST'])
-def picscore():
-    form = PicScoreForm()
-    finalScores = []
-    otherScores = []
-    #need 10 different instances of the score object.
-    for j in range(10):
-        idxScore = "score0" + str(j)
-        otherScores.append(form[idxScore])
-    i = 0
-    myNumbers = "Start:"
-    if request.method =="POST":
-        if form.validate() == False:
 
-            newScoreEmail = "utkeitarol@gmail.com"
-            i = 0
-            for i in range(10):
-                if(i < 10):
-                    #newScoreEmail = otherScores[i]
-                    currentImageName = "image00"+ str(i)+".png"
-                    currentScore = Score(newScoreEmail, currentImageName, otherScores[i].data)
-                    #db.session.add(currentScore)
-                #elif(i<100):
-                #    finalScore.append(Score(newScoreEmail, "image0"+i+".png", form.scoreArray[i].data))
-            for z in range(10):
-                myNumbers += str(otherScores[z].data) + " "
-            #return myNumbers + " Check it"
-            return jsonify(otherScores)
-    elif request.method =="GET":
-        return render_template('picscore.html', form=form, i=0,j='0',numbers=myNumbers,scores = otherScores)
 #Pic Score 3... Lets see
 @app.route("/picscore3",methods=['GET','POST'])
-def radialScore():
+def picscore3():
     #need 10 different instances of the score object.
     i = 0
     j = 0
@@ -93,37 +63,22 @@ def radialScore():
         return jsonify(myOptions)
     elif request.method =="GET":
         return render_template('picscore3.html', i=0,j='0')
-#Homepage
-@app.route("/home")
-def home():
-    return render_template("home.html")
-#Setup the route for SignUp
-@app.route("/signup", methods=['GET','POST'])
-def signup():
-    form = SignUpForm()
+
+#Load transition stage....
+@app.route("/compare",methods=['GET','POST'])
+def compare():
+    #need the 6 pictures of the item with the scores.
+    #need 10 different instances of the score object.
+    i = 0
+    j = 0
+    myNumbers = "Start:"
+    options = []
+    myOptions = {}
+
     if request.method =="POST":
-        if form.validate() == False:
-            return render_template('signup.html', form=form)
-        else:
-            newuser = User(form.first_name.data,form.last_name.data, form.email.data, form.password.data)
-            db.session.add(newuser)
-            db.session.commit()
-            #Adding for sessions. This tells you that the email portion of the post data is being used.
-            session['email'] = newuser.email #Using for models.py, has constructor. This is a parameter of the objectself.
-            #This is where the user is added to the session.
-            db.session.add(newuser)
-            db.session.commit()
-
-            #return "You've been Successfully Signed up!"
-            return redirect(url_for('home'))
-
+        return jsonify(myOptions)
     elif request.method =="GET":
-        return render_template('signup.html', form=form)
-#This is the end.
-@app.route("/login")
-def login():
-    return render_template("login.html")
-
+        return render_template('compare.html', i=0,j='0')
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.run(debug=True)
