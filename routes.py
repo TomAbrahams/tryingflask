@@ -2,7 +2,8 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from models import db, User, Score
 from forms import SignUpForm, LoginForm, PicScoreForm
-
+from cliArrayThread import frontendSide
+from getTheCSV import makeCSV
 #Got to get that app.
 app = Flask(__name__)
 
@@ -60,7 +61,12 @@ def picscore3():
 
         options.append(newScoreEmail)
         #return myNumbers + " Check it"
-        return jsonify(myOptions)
+        makeCSV(newScoreEmail)
+        #This will train the item.
+        finalScore = frontendSide(newScoreEmail)
+        print(finalScore)
+        return str(finalScore)
+        #return jsonify(myOptions)
     elif request.method =="GET":
         return render_template('picscore3.html', i=0,j='0')
 
