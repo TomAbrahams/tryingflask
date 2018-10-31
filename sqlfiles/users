@@ -1,0 +1,19 @@
+﻿-- Table: public.users
+
+-- DROP TABLE public.users;
+
+CREATE TABLE public.users
+(
+  uid integer NOT NULL DEFAULT nextval('users_uid_seq'::regclass),
+  firstname character varying(109) NOT NULL,
+  lastname character varying(109) NOT NULL,
+  email character varying(120) NOT NULL,
+  pwdhash character varying(100) NOT NULL,
+  CONSTRAINT users_pkey PRIMARY KEY (uid),
+  CONSTRAINT users_email_key UNIQUE (email)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.users
+  OWNER TO utkeitaro;

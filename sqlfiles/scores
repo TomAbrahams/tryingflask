@@ -1,0 +1,17 @@
+﻿-- Table: public.scores
+
+-- DROP TABLE public.scores;
+
+CREATE TABLE public.scores
+(
+  id integer NOT NULL DEFAULT nextval('scores_id_seq'::regclass),
+  email character varying(120),
+  imagename character varying(200),
+  score integer,
+  CONSTRAINT scores_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.scores
+  OWNER TO postgres;
